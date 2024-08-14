@@ -15,7 +15,6 @@ export default class UpdateProductsUseCase {
         if (!product) {
             throw new Error("Product not found");
         }
-        console.log(product.id);
         product.changeName(input.name);
         product.changePrice(input.price);
 
