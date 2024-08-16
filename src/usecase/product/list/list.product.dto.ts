@@ -4,5 +4,5 @@ type Product = {
     price: number;
 }
 export interface OutputProductDto {
-    products:Product[] | null;
+    products: Product[] | null;
 }
