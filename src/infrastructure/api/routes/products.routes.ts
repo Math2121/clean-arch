@@ -7,6 +7,7 @@ import CustomerPresenter from '../presenter/customer.presenter'
 import ListProductsUseCase from '../../../usecase/product/list/list.product.usecase'
 import ProductRepository from '../../product/repository/sequelize/product.repository'
 import PorductsPresenter from '../presenter/products.presenter'
+import CreateProductUseCase from '../../../usecase/product/create/product.create.usecase'
 
 
 export const productsRoute = express.Router()
@@ -18,4 +19,12 @@ productsRoute.get('/', async (req: Request, res: Response) => {
         json: async () => res.send(output),
         xml: async () => res.send(PorductsPresenter.toXML(output)),
     })
+})
+
+productsRoute.post('/', async (req: Request, res: Response) => {
+
+    const usecase = new CreateProductUseCase(new ProductRepository())
+    const output = await usecase.execute(req.body)
+    res.status(201).send(output)
+
 })

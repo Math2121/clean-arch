@@ -3,6 +3,7 @@ import { Sequelize } from "sequelize-typescript"
 import CustomerModel from "../customer/repository/sequelize/customer.model";
 import { customerRoute } from "./routes/customer.routes";
 import { productsRoute } from "./routes/products.routes";
+import ProductModel from "../product/repository/sequelize/product.model";
 
 export const app: Express = express()
 app.use(express.json())
@@ -21,7 +22,7 @@ async function setupDb(){
 
 
     try {
-        await sequelize.addModels([CustomerModel])
+        await sequelize.addModels([CustomerModel, ProductModel])
         await sequelize.sync()
         console.log("Connection has been established successfully.")
     } catch (error) {
